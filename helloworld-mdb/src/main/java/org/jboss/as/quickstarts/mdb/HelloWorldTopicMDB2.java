@@ -16,13 +16,13 @@
  */
 package org.jboss.as.quickstarts.mdb;
 
-import java.util.logging.Logger;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
+import java.util.logging.Logger;
 
 /**
  * <p>
@@ -31,18 +31,18 @@ import javax.jms.TextMessage;
  *
  * @author Serge Pagop (spagop@redhat.com)
  */
-@MessageDriven(name = "HelloWorldQTopicMDB", activationConfig = {
+@MessageDriven(name = "HelloWorldQTopicMDB2", activationConfig = {
         @ActivationConfigProperty(propertyName = "destination", propertyValue = "topic/HELLOWORLDMDBTopic"),
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
         @ActivationConfigProperty(propertyName = "subscriptionDurability", propertyValue = "Durable"),
-        @ActivationConfigProperty(propertyName = "subscriptionName", propertyValue = "HelloWorldTopic"),
+        @ActivationConfigProperty(propertyName = "subscriptionName", propertyValue = "HelloWorldTopic2"),
         @ActivationConfigProperty(propertyName = "clientId", propertyValue = "random-server"),
         @ActivationConfigProperty(propertyName = "hA", propertyValue = "true"),
         @ActivationConfigProperty(propertyName = "shareSubscriptions", propertyValue = "true")})
-public class HelloWorldTopicMDB implements MessageListener {
+public class HelloWorldTopicMDB2 implements MessageListener {
 
-    private static final Logger LOGGER = Logger.getLogger(HelloWorldTopicMDB.class.toString());
+    private static final Logger LOGGER = Logger.getLogger(HelloWorldTopicMDB2.class.toString());
 
     /**
      * @see MessageListener#onMessage(Message)
@@ -52,7 +52,7 @@ public class HelloWorldTopicMDB implements MessageListener {
         try {
             if (rcvMessage instanceof TextMessage) {
                 msg = (TextMessage) rcvMessage;
-                LOGGER.info("Received Message by consumer 1 from topic: " + msg.getText());
+                LOGGER.info("Received Message by consumer 2 from topic: " + msg.getText());
             } else {
                 LOGGER.warning("Message of wrong type: " + rcvMessage.getClass().getName());
             }
